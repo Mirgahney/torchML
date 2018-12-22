@@ -21,15 +21,14 @@ class transformation:
         if K is None:
             k = self.K
             
-        X = X.flatten()
-        N = X.shape[0]
+        N, D = X.shape
         
         #initialize Phi
-        Phi = np.zeros((N, K+1))
+        Phi = np.zeros((N, D*(K+1)))
         
         # Compute the feature matrix in stages
         Phi = np.apply_along_axis(point_feature,0,X, K).T 
-        return Phi
+        return np.reshape(Phi, (N,-1))
 
     def trig_point_feature(self, x, k):
         feature = []
@@ -48,8 +47,7 @@ class transformation:
         if K is None:
             k = self.K
             
-        X = X.flatten()
-        N = X.shape[0]
+        N, D = X.shape
         
         #initialize Phi
         Phi = np.zeros((N, 2*K+1))
