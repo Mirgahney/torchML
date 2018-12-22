@@ -129,7 +129,7 @@ class NonLinearRegression:
             print('Undefined transformations use poly, trigonometric or gaussian')
             pass
         
-        lr.fit(self.X, self.y)
+        self.lr.fit(self.X, self.y)
         self.theta = lr.theta
         self.fitted = True
         
