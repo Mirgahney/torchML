@@ -89,7 +89,7 @@ class NonLinearRegression:
                 print('Undefined transformations use poly, trigonometric or gaussian')
                 pass
         
-            return lr.predict(transformed_X)
+            return self.lr.predict(transformed_X)
     
     def fit(self, X,y):
         """
