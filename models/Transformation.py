@@ -1,8 +1,7 @@
 import numpy as np
 
 class transformation:
-
-    def __init__( K = 3, length = 0.1, mu_range = (0,1)):
+    def __init__( self, K = 3, length = 0.1, mu_range = (0,1)):
         self.K = K
         self.length = length
         self.mu_range = mu_range
@@ -13,12 +12,15 @@ class transformation:
             feature.append(x**i)
         return np.array(feature)
 
-    def poly_features(self, X, K = elf.K):
+    def poly_features(self, X, K = None):
         
         #X: inputs of size N x 1
         #K: degree of the polynomial
         # computes the feature matrix Phi (N x (K+1))
         
+        if K is None:
+            k = self.K
+            
         X = X.flatten()
         N = X.shape[0]
         
@@ -29,7 +31,7 @@ class transformation:
         Phi = np.apply_along_axis(point_feature,0,X, K).T 
         return Phi
 
-    def trig_point_feature(self, x, self.k):
+    def trig_point_feature(self, x, k):
         feature = []
         feature.append(1)
         for i in range(1,k+1):
@@ -37,12 +39,15 @@ class transformation:
             feature.append(np.cos(2*np.pi*i*x))
         return np.array(feature, dtype=float)
 
-    def trigonometric_features(self, X, K = self.K):
+    def trigonometric_features(self, X, K = None):
         
         #X: inputs of size N x 1
         #K: degree of the polynomial
         # computes the feature matrix Phi (N x (K+1))
         
+        if K is None:
+            k = self.K
+            
         X = X.flatten()
         N = X.shape[0]
         
@@ -66,12 +71,21 @@ class transformation:
             feature.append(phi)
         return np.array(feature)
 
-    def gaussian_features(X, K = self.K, l = self.l, mu_range = self.mu_range)):
+    def gaussian_features(X, K = None, l = None, mu_range = None):
         
         #X: inputs of size N x 1
         #K: degree of the polynomial
         # computes the feature matrix Phi (N x (K+1))
         
+        if K is None:
+            k = self.K
+            
+        if l is None:
+            l = self.l
+            
+        if mu_range is None:
+            mu_range = self.mu_range
+            
         X = X.flatten()
         N = X.shape[0]
         
