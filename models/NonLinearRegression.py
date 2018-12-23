@@ -129,7 +129,7 @@ class NonLinearRegression:
             trans_X = torch.from_numpy(self.transformer(self.X, self.K, self.length, self.mu_range))
         
         else:
-            print('Undefined transformations use poly, trigonometric or gaussian')
+            print('Undefined transformations use poly, trigonometric, gaussian or a user defined function')
             pass
         
         self.lr.fit(self.X, self.y)
