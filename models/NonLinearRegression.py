@@ -124,6 +124,9 @@ class NonLinearRegression:
             
         elif self.transformer == 'gaussian':
             self.X = torch.from_numpy(gaussian_features(self.X.numpy(), self.K, self.length, self.mu_range))
+
+        elif callable(self.transformer):
+            trans_X = torch.from_numpy(self.transformer(self.X, self.K, self.length, self.mu_range))
         
         else:
             print('Undefined transformations use poly, trigonometric or gaussian')
